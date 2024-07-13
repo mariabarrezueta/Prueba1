@@ -6,4 +6,8 @@ public partial class WeatherPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    private async void OnViewWeatherRecordsClicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//WeatherRecords");
+    }
 }

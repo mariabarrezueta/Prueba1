@@ -14,5 +14,6 @@
         <Button Text="Buscar" Command="{Binding SearchWeatherCommand}" />
         <Label Text="Resultado:" FontSize="Medium" FontAttributes="Bold" />
         <Label Text="{Binding WeatherResult}" FontSize="Small" />
+        <Button Text="Ver Registros de Clima" Command="{Binding LoadWeatherRecordsCommand}" Clicked="OnViewWeatherRecordsClicked" />
     </StackLayout>
 </ContentPage>

@@ -14,6 +14,7 @@ namespace Prueba1.ViewModels
     {
         private string _cityName;
         private string _weatherResult;
+        private WeatherRecord _selectedWeatherRecord;
         private readonly HttpClient _httpClient;
         private readonly WeatherDatabase _weatherDatabase;
 
@@ -23,6 +24,7 @@ namespace Prueba1.ViewModels
             _weatherDatabase = App.Database;
             SearchWeatherCommand = new Command(async () => await GetWeatherAsync());
             LoadWeatherRecordsCommand = new Command(async () => await LoadWeatherRecordsAsync());
+            DeleteWeatherRecordCommand = new Command<WeatherRecord>(async (record) => await DeleteWeatherRecordAsync(record));
             WeatherRecords = new ObservableCollection<WeatherRecord>();
         }
 
@@ -48,8 +50,19 @@ namespace Prueba1.ViewModels
 
         public ObservableCollection<WeatherRecord> WeatherRecords { get; }
 
+        public WeatherRecord SelectedWeatherRecord
+        {
+            get => _selectedWeatherRecord;
+            set
+            {
+                _selectedWeatherRecord = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand SearchWeatherCommand { get; }
         public ICommand LoadWeatherRecordsCommand { get; }
+        public ICommand DeleteWeatherRecordCommand { get; }
 
         private async Task GetWeatherAsync()
         {
@@ -107,6 +120,12 @@ namespace Prueba1.ViewModels
                 WeatherRecords.Add(record);
             }
         }
+
+        private async Task DeleteWeatherRecordAsync(WeatherRecord record)
+        {
+            await _weatherDatabase.DeleteWeatherRecordAsync(record);
+            WeatherRecords.Remove(record);
+        }
     }
 
     public class WeatherData
@@ -114,7 +133,7 @@ namespace Prueba1.ViewModels
         public string Name { get; set; }
         public Main Main { get; set; }
         public Weather[] Weather { get; set; }
-        public Sys Sys { get; set; } // Añadir esta propiedad para obtener la información del país
+        public Sys Sys { get; set; }
     }
 
     public class Main
@@ -132,4 +151,3 @@ namespace Prueba1.ViewModels
         public string Country { get; set; }
     }
 }
-
