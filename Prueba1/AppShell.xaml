@@ -8,5 +8,6 @@
     <ShellContent Title="Buscar Eventos" ContentTemplate="{DataTemplate views:MainPage}" Route="Buscar" />
     <ShellContent Title="Compra de Tickets" ContentTemplate="{DataTemplate views:PurchasePage}" Route="Compra" />
     <ShellContent Title="Detalles del Evento" ContentTemplate="{DataTemplate views:EventoDetallePage}" Route="Detalles" />
+    <ShellContent Title="Clima" ContentTemplate="{DataTemplate views:WeatherPage}" Route="Clima" />
 
 </Shell>
