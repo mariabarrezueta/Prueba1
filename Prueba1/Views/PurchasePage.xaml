@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Prueba1.ViewModels"
+             xmlns:behaviors="clr-namespace:Prueba1.Behaviors"
              x:Class="Prueba1.Views.PurchasePage"
              Title="Purchase Page">
-    
+
 
     <StackLayout Padding="20">
         <Label Text="Evento" />
@@ -14,10 +15,18 @@
         <Entry Text="{Binding TicketQuantity}" Keyboard="Numeric" />
 
         <Label Text="Nombre del Comprador" />
-        <Entry Text="{Binding HolderName}" />
+        <Entry Text="{Binding HolderName}">
+            <Entry.Behaviors>
+                <behaviors:ComportamientoLetras />
+            </Entry.Behaviors>
+        </Entry>
 
         <Label Text="Número de Cédula" />
-        <Entry Text="{Binding HolderId}" />
+        <Entry Text="{Binding HolderId}" Keyboard="Numeric">
+            <Entry.Behaviors>
+                <behaviors:ComportamientoNumerico MaxLength="10" />
+            </Entry.Behaviors>
+        </Entry>
 
         <Label Text="Número de Tarjeta de Crédito" />
         <Entry Text="{Binding CreditCardNumber}" Keyboard="Numeric" />
@@ -26,7 +35,11 @@
         <Entry Text="{Binding CardCode}" Keyboard="Numeric" />
 
         <Label Text="Fecha de Caducidad" />
-        <Entry Text="{Binding ExpirationDate}" Keyboard="Numeric" Placeholder="MM/AA" />
+        <Entry Text="{Binding ExpirationDate}" Keyboard="Numeric" Placeholder="MM/AA">
+            <Entry.Behaviors>
+                <behaviors:ComportamientoExpira />
+            </Entry.Behaviors>
+        </Entry>
 
         <Label Text="Total" />
         <Label Text="{Binding TotalAmount}" />

@@ -19,10 +19,37 @@ namespace Prueba1.Behaviors
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = (Entry)sender;
-            if (entry.Text.Length == 2 && !entry.Text.Contains('/'))
+            string newText = entry.Text.Replace("/", "");
+
+            if (newText.Length > 4)
             {
-                entry.Text += "/";
+                newText = newText.Substring(0, 4);
             }
+
+            if (newText.Length >= 2)
+            {
+                if (int.TryParse(newText.Substring(0, 2), out int month))
+                {
+                    if (month < 1 || month > 12)
+                    {
+                        newText = "12";
+                    }
+
+                    if (newText.Length > 3)
+                    {
+                        int year = int.Parse(newText.Substring(2, 2));
+                        if (year < 24)
+                        {
+                            newText = newText.Substring(0, 2) + "24";
+                        }
+                    }
+
+                    newText = newText.Insert(2, "/");
+                }
+            }
+
+            entry.Text = newText;
         }
     }
 }
+

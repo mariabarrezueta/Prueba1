@@ -153,8 +153,22 @@ namespace Prueba1.ViewModels
             };
 
             await _apiService.PostPurchaseAsync(purchase);
-            // Navegar a otra página o mostrar un mensaje de confirmación
+
+            // Mostrar mensaje de confirmación
+            await Application.Current.MainPage.DisplayAlert("Compra Confirmada", "La compra se ha realizado exitosamente.", "OK");
+
+            // Limpiar campos después de la compra
+            HolderName = string.Empty;
+            HolderId = string.Empty;
+            TicketQuantity = string.Empty;
+            CreditCardNumber = string.Empty;
+            CardCode = string.Empty;
+            ExpirationDate = string.Empty;
+            SelectedEvent = null;
+            TotalAmount = 0;
+
         }
+
 
         private void OnNavigateBack()
         {

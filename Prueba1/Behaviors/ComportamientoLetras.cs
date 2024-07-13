@@ -1,12 +1,13 @@
-﻿using System.Linq;
-using Microsoft.Maui.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Prueba1.Behaviors
 {
-    public class ComportamientoNumerico : Behavior<Entry>
+    public class ComportamientoLetras : Behavior<Entry>
     {
-        public int MaxLength { get; set; }
-
         protected override void OnAttachedTo(Entry bindable)
         {
             bindable.TextChanged += OnEntryTextChanged;
@@ -22,14 +23,10 @@ namespace Prueba1.Behaviors
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = (Entry)sender;
-            string newText = new string(entry.Text.Where(char.IsDigit).ToArray());
-
-            if (newText.Length > MaxLength)
+            if (!string.IsNullOrEmpty(entry.Text))
             {
-                newText = newText.Substring(0, MaxLength);
+                entry.Text = new string(entry.Text.Where(c => char.IsLetter(c) || char.IsWhiteSpace(c)).ToArray());
             }
-
-            entry.Text = newText;
         }
     }
 }
