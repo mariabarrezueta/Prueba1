@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Prueba1.ViewModels"
+             x:Class="Prueba1.Views.PurchasePage"
+             Title="Purchase Page">
+    
+
+    <StackLayout Padding="20">
+        <Label Text="Evento" />
+        <Picker ItemsSource="{Binding Events}" ItemDisplayBinding="{Binding EventName}" SelectedItem="{Binding SelectedEvent}" />
+
+        <Label Text="Cantidad de Tickets" />
+        <Entry Text="{Binding TicketQuantity}" Keyboard="Numeric" />
+
+        <Label Text="Nombre del Comprador" />
+        <Entry Text="{Binding HolderName}" />
+
+        <Label Text="Número de Cédula" />
+        <Entry Text="{Binding HolderId}" />
+
+        <Label Text="Número de Tarjeta de Crédito" />
+        <Entry Text="{Binding CreditCardNumber}" Keyboard="Numeric" />
+
+        <Label Text="Código de Tarjeta" />
+        <Entry Text="{Binding CardCode}" Keyboard="Numeric" />
+
+        <Label Text="Fecha de Caducidad" />
+        <Entry Text="{Binding ExpirationDate}" Keyboard="Numeric" Placeholder="MM/AA" />
+
+        <Label Text="Total" />
+        <Label Text="{Binding TotalAmount}" />
+
+        <Button Text="Confirmar Compra" Command="{Binding ConfirmPurchaseCommand}" />
+    </StackLayout>
+</ContentPage>

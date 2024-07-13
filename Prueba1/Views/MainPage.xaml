@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Prueba1.ViewModels"
+             x:Class="Prueba1.Views.MainPage"
+             Title="Main Page">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="15">
+                <SearchBar Placeholder="Buscar eventos..." Text="{Binding SearchQuery}" />
+                <ListView ItemsSource="{Binding Events}" SelectedItem="{Binding SelectedEvent}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10">
+                                    <Label Text="{Binding EventName}" FontSize="18" FontAttributes="Bold" />
+                                    <Image Source="{Binding EventImage}" HeightRequest="200" />
+                                    <Label Text="{Binding EventDate, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" />
+                                    <Label Text="{Binding EventLocation}" FontSize="16" />
+                                    <Label Text="{Binding EventDescription}" FontSize="14" TextColor="Gray" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

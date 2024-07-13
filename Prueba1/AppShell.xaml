@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:Prueba1.Views"
+    x:Class="Prueba1.AppShell">
+
+    <ShellContent Title="Buscar Eventos" ContentTemplate="{DataTemplate views:MainPage}" Route="Buscar" />
+    <ShellContent Title="Compra de Tickets" ContentTemplate="{DataTemplate views:PurchasePage}" Route="Compra" />
+    <ShellContent Title="Detalles del Evento" ContentTemplate="{DataTemplate views:EventoDetallePage}" Route="Detalles" />
+
+</Shell>
